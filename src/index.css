@@ -1,0 +1,25 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+    user-select: none;
+}
+
+* {
+    scroll-behavior: smooth;
+    scrollbar-width: thin;
+    scrollbar-color: rgb(154, 101, 253) transparent;
+}
+
+*::-webkit-scrollbar {
+    width: 8px;
+}
+
+*::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+    background-color: rgb(154, 101, 253);
+}
