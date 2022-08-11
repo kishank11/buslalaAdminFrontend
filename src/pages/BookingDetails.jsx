@@ -29,8 +29,8 @@ const BookingDetails = () => {
         }
       )
       .then((response) => {
-        console.log(response.data.data);
-        setBookingDetailsData(response.data.data);
+        console.log(response?.data?.data);
+        setBookingDetailsData(response?.data?.data);
         setLoading(false);
       })
       .catch((err) => {
@@ -82,6 +82,9 @@ const BookingDetails = () => {
                     <TableCell align="center">
                       <Link to={`/booking-details/view-booking/${data._id}`}>
                         <View title="View" />
+                      </Link>
+                      <Link to={`/api/user/cancelBookings/${data._id}`}>
+                        <View title="Cancel" />
                       </Link>
                     </TableCell>
                   </TableRow>

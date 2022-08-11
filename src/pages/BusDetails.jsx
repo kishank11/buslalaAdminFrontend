@@ -109,8 +109,8 @@ const BusDetails = () => {
                     <TableCell align="center">{data.busType}</TableCell>
                     <TableCell align="center">{data.fare.upperBerth}</TableCell>
                     <TableCell align="center">{data.fare.lowerBerth}</TableCell>
-                    <TableCell align="center">{data.seats.seater}</TableCell>
-                    <TableCell align="center">{data.seats.sleeper}</TableCell>
+                    <TableCell align="center">{data.total_seater}</TableCell>
+                    <TableCell align="center">{data.total_sleeper}</TableCell>
                     <TableCell align="center">{data.busCapacity}</TableCell>
                     <TableCell align="center">
                       <Link to={`/edit-busDetails-form/${data._id}`}>

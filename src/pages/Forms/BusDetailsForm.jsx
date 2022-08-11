@@ -65,6 +65,8 @@ const BusDetailsForm = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     let data = {
+      total_seater: seaterSeats,
+      total_sleeper: sleeperSeats,
       seats: seats,
       fare: {
         lowerBerth: lowerberthFare,
@@ -111,8 +113,8 @@ const BusDetailsForm = () => {
           setBusType(res.data.data.type);
           setBusModel(res.data.data.bus_model);
           setBusCapacity(res.data.data.busCapacity);
-          setSeaterSeats(res.data.data.seats.seater);
-          setSleeperSeats(res.data.data.seats.sleeper);
+          setSeaterSeats(res.data.data.total_seater);
+          setSleeperSeats(res.data.data.total_sleeper);
           setLowerberthFare(res.data.data.fare.lowerBerth);
           setUpperberthFare(res.data.data.fare.upperBerth);
           setBusTypeAC(res.data.data.busType);
@@ -130,6 +132,8 @@ const BusDetailsForm = () => {
       .put(
         `https://sea-turtle-app-5sz9y.ondigitalocean.app/api/admin/${id}/updateBusDetails`,
         {
+          total_seater: seaterSeats,
+          total_sleeper: sleeperSeats,
           seats: seats,
           fare: {
             lowerBerth: lowerberthFare,
