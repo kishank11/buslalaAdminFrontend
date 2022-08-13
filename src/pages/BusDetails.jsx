@@ -91,6 +91,8 @@ const BusDetails = () => {
                   <TableCell align="center">Bus Type</TableCell>
                   <TableCell align="center">Fare of Upper Berth</TableCell>
                   <TableCell align="center">Fare of Lower Berth</TableCell>
+                  <TableCell align="center">Fare of Midpoint</TableCell>
+
                   <TableCell align="center">Seats of Seater</TableCell>
                   <TableCell align="center">Seats of Sleeper</TableCell>
                   <TableCell align="center">Capacity of Seats</TableCell>
@@ -109,6 +111,8 @@ const BusDetails = () => {
                     <TableCell align="center">{data.busType}</TableCell>
                     <TableCell align="center">{data.fare.upperBerth}</TableCell>
                     <TableCell align="center">{data.fare.lowerBerth}</TableCell>
+                    <TableCell align="center">{data.fare.midpoint}</TableCell>
+
                     <TableCell align="center">{data.total_seater}</TableCell>
                     <TableCell align="center">{data.total_sleeper}</TableCell>
                     <TableCell align="center">{data.busCapacity}</TableCell>

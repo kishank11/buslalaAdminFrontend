@@ -31,6 +31,8 @@ const BusDetailsForm = () => {
   const [sleeperSeats, setSleeperSeats] = useState("");
   const [lowerberthFare, setLowerberthFare] = useState("");
   const [upperberthFare, setUpperberthFare] = useState("");
+  const [midpointFare, setMidpointFare] = useState("");
+
   const [busTypeAC, setBusTypeAC] = useState("");
 
   const [seats, setSeats] = useState([]);
@@ -59,6 +61,8 @@ const BusDetailsForm = () => {
     setSleeperSeats("");
     setLowerberthFare("");
     setUpperberthFare("");
+    setMipdointFare("");
+
     setBusTypeAC("");
   };
 
@@ -71,6 +75,7 @@ const BusDetailsForm = () => {
       fare: {
         lowerBerth: lowerberthFare,
         upperBerth: upperberthFare,
+        midpoint: midpointFare,
       },
       bus_model: busModel,
       busCapacity,
@@ -117,6 +122,8 @@ const BusDetailsForm = () => {
           setSleeperSeats(res.data.data.total_sleeper);
           setLowerberthFare(res.data.data.fare.lowerBerth);
           setUpperberthFare(res.data.data.fare.upperBerth);
+          setMidpointFare(res.data.data.fare.midpoint);
+
           setBusTypeAC(res.data.data.busType);
         })
         .catch((err) => {
@@ -138,6 +145,7 @@ const BusDetailsForm = () => {
           fare: {
             lowerBerth: lowerberthFare,
             upperBerth: upperberthFare,
+            midpoint: midpointFare,
           },
           bus_model: busModel,
           busCapacity,
@@ -262,6 +270,16 @@ const BusDetailsForm = () => {
               className={InputStyle}
               value={lowerberthFare}
               onChange={(e) => setLowerberthFare(e.target.value)}
+            />
+          </div>
+          <div className="flex flex-col">
+            <span className="text-xl">Enter the Fare for Midpoint</span>
+            <input
+              type="number"
+              placeholder="Enter the midpoint fare"
+              className={InputStyle}
+              value={midpointFare}
+              onChange={(e) => setMidpointFare(e.target.value)}
             />
           </div>
         </div>

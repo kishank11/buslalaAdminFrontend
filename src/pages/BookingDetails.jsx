@@ -83,8 +83,8 @@ const BookingDetails = () => {
                       <Link to={`/booking-details/view-booking/${data._id}`}>
                         <View title="View" />
                       </Link>
-                      <Link to={`/api/user/cancelBookings/${data._id}`}>
-                        <View title="Cancel" />
+                      <Link to={`/booking-details/view-booking/${data._id}`}>
+                        <View title="Cancel" onClick={(e) => {}} />
                       </Link>
                     </TableCell>
                   </TableRow>

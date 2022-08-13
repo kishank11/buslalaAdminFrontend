@@ -16,6 +16,8 @@ import Paper from "@mui/material/Paper";
 import AddNewButton from "../components/AddNewButton";
 import Edit from "../components/Edit";
 import moment from "moment";
+import "./style.css";
+import { width } from "@mui/system";
 
 const ManageRoutes = () => {
   const [allRoutesData, setAllRoutesData] = useState();
@@ -67,6 +69,7 @@ const ManageRoutes = () => {
               >
                 <TableRow>
                   <TableCell>Source</TableCell>
+                  <TableCell align="center">Mid-point</TableCell>
                   <TableCell align="center">Destination</TableCell>
                   <TableCell align="center">Driver ID</TableCell>
                   <TableCell align="center">Bus ID</TableCell>
@@ -83,10 +86,13 @@ const ManageRoutes = () => {
                 {allRoutesData?.map((row) => (
                   <TableRow>
                     <TableCell component="th" scope="row">
-                      {row.sourceId ? `${row.sourceId.name}` : ""}
+                      {row.sourceId ? `${row?.sourceId?.name}` : ""}
                     </TableCell>
                     <TableCell align="center">
-                      {row.destinationId ? `${row.destinationId.name}` : ""}
+                      {row.destinationId ? `${row?.midpointId?.name}` : ""}
+                    </TableCell>
+                    <TableCell align="center">
+                      {row.destinationId ? `${row?.destinationId?.name}` : ""}
                     </TableCell>
                     <TableCell align="center">{row._id}</TableCell>
                     <TableCell align="center">

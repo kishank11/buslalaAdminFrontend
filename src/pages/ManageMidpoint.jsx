@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { GrBus } from "react-icons/gr";
 import { Link } from "react-router-dom";
 //Material-UI
@@ -15,21 +15,20 @@ import axios from "axios";
 import ScaleLoader from "react-spinners/ScaleLoader";
 import AddNewButton from "../components/AddNewButton";
 
-const ManageDestination = () => {
-  const [destinationData, setDestinationData] = useState();
+const ManageMidpoint = () => {
+  const [sourceData, setSourceData] = useState();
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     axios
       .get(
-        "https://sea-turtle-app-5sz9y.ondigitalocean.app/api/admin/destination",
+        "https://sea-turtle-app-5sz9y.ondigitalocean.app/api/admin/midpoint",
         {
           headers: { Authorization: getToken() },
         }
       )
       .then((response) => {
-        // console.log(response.data.data);
-        setDestinationData(response.data.data);
+        setSourceData(response.data.data);
         setLoading(false);
       })
       .catch((err) => {
@@ -40,7 +39,7 @@ const ManageDestination = () => {
   return (
     <React.Fragment>
       {loading ? (
-        <div className="h-full flex items-center justify-center">
+        <div className="flex h-full items-center justify-center">
           <ScaleLoader color="green" />
         </div>
       ) : (
@@ -48,11 +47,11 @@ const ManageDestination = () => {
           <div className="flex items-center text-left w-full pb-4 text-3xl justify-between">
             <div className="flex">
               <GrBus className="mr-4" />
-              Manage Destination
+              Manage Midpoint
             </div>
 
-            <Link to="/new-destination-form">
-              <AddNewButton title="Add New Destination" />
+            <Link to="/new-midpoint-form">
+              <AddNewButton title="Add New Midpoint" />
             </Link>
           </div>
           <TableContainer component={Paper}>
@@ -64,33 +63,31 @@ const ManageDestination = () => {
                 }}
               >
                 <TableRow>
-                  <TableCell>Destination ID</TableCell>
+                  <TableCell>Midpoint ID</TableCell>
                   <TableCell align="center">Name</TableCell>
-                  <TableCell align="center">Drop Time</TableCell>
+                  <TableCell align="center">Pickup Time</TableCell>
                   <TableCell align="center">Edit</TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
-                {destinationData.map((data) => {
-                  return (
-                    <TableRow key={data._id}>
-                      <TableCell component="th" scope="row">
-                        {data._id}
-                      </TableCell>
-                      <TableCell align="center">{data.name}</TableCell>
-                      <TableCell align="center">
-                        {data?.drop_of_time?.length === 1
-                          ? data.drop_of_time
-                          : "07:15"}
-                      </TableCell>
-                      <TableCell align="center">
-                        <Link to={`/edit-destination-form/${data._id}`}>
-                          <Edit title="Edit" />
-                        </Link>
-                      </TableCell>
-                    </TableRow>
-                  );
-                })}
+                {sourceData?.map((data) => (
+                  <TableRow key={data._id}>
+                    <TableCell component="th" scope="row">
+                      {`Source_${data._id.slice(-4)}`}
+                    </TableCell>
+                    <TableCell align="center">{data.name}</TableCell>
+                    <TableCell align="center">
+                      {data.pick_up_time?.length >= 1
+                        ? data.pick_up_time
+                        : "7:05 PM"}
+                    </TableCell>
+                    <TableCell align="center">
+                      <Link to={`/edit-midpoint-form/${data._id}`}>
+                        <Edit title="Edit" />
+                      </Link>
+                    </TableCell>
+                  </TableRow>
+                ))}
               </TableBody>
             </Table>
           </TableContainer>
@@ -100,4 +97,4 @@ const ManageDestination = () => {
   );
 };
 
-export default ManageDestination;
+export default ManageMidpoint;

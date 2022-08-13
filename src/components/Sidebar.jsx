@@ -51,6 +51,11 @@ const Sidebar = () => {
         title: "Manage Routes",
         route: "/manage-routes",
       },
+      {
+        id: 4,
+        title: "Manage Midpoints",
+        route: "/manage-midpoint",
+      },
     ];
   }
 

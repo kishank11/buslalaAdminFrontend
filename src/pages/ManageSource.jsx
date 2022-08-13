@@ -74,8 +74,8 @@ const ManageSource = () => {
                     </TableCell>
                     <TableCell align="center">{data.name}</TableCell>
                     <TableCell align="center">
-                      {data.pick_up_time.length >= 1
-                        ? `0${data.pick_up_time[0]}:00 PM`
+                      {data?.pick_up_time?.length >= 1
+                        ? `${data.pick_up_time}`
                         : "7:05 PM"}
                     </TableCell>
                     <TableCell align="center">

@@ -7,7 +7,7 @@ import { getToken } from "../../utils/Common";
 const InputStyle =
   "outline-none h-12 p-4 border-[1px] border-zinc-400 rounded-md hover:shadow-bs1 transition-all duration-200 my-4 w-[350px]";
 
-const SourceForm = () => {
+const MidpointForm = () => {
   const { id } = useParams();
   // console.log(id);
   const [sourceName, setSourceName] = useState("");
@@ -17,13 +17,15 @@ const SourceForm = () => {
     e.preventDefault();
     await axios
       .post(
-        "https://sea-turtle-app-5sz9y.ondigitalocean.app/api/admin/source",
+        "https://sea-turtle-app-5sz9y.ondigitalocean.app/api/admin/midpoint",
         {
           name: sourceName,
           pick_up_time: departureTime,
         },
         {
-          headers: { Authorization: getToken() },
+          headers: {
+            Authorization: getToken(),
+          },
         }
       )
       .then((response) => {
@@ -39,9 +41,11 @@ const SourceForm = () => {
   useEffect(async () => {
     await axios
       .get(
-        `https://sea-turtle-app-5sz9y.ondigitalocean.app/api/admin/onesource/${id}`,
+        `https://sea-turtle-app-5sz9y.ondigitalocean.app/api/admin/onemidpoint/${id}`,
         {
-          headers: { Authorization: getToken() },
+          headers: {
+            Authorization: getToken(),
+          },
         }
       )
       .then((res) => {
@@ -59,13 +63,15 @@ const SourceForm = () => {
     // console.log(sourceName);
     await axios
       .put(
-        `https://sea-turtle-app-5sz9y.ondigitalocean.app/api/admin/${id}/editSource`,
+        `https://sea-turtle-app-5sz9y.ondigitalocean.app/api/admin/${id}/editMid`,
         {
           name: sourceName,
           pick_up_time: departureTime,
         },
         {
-          headers: { Authorization: getToken() },
+          headers: {
+            Authorization: getToken(),
+          },
         }
       )
       .then((response) => {
@@ -81,8 +87,8 @@ const SourceForm = () => {
   return (
     <div className="p-10">
       <div className="px-10 h-16 flex items-center justify-between mb-12">
-        <p className="text-3xl">Add New Source</p>
-        <Link to="/manage-source">
+        <p className="text-3xl">Add New Midpoint</p>
+        <Link to="/manage-midpoint">
           <BsArrowReturnLeft size={35} className="cursor-pointer" />
         </Link>
       </div>
@@ -91,7 +97,7 @@ const SourceForm = () => {
         className="flex items-center justify-around flex-col"
       >
         <div className="flex flex-col">
-          <span className="text-xl">Enter the New Source</span>
+          <span className="text-xl">Enter the New Midpoint</span>
           <input
             type="text"
             placeholder="Enter the source name"
@@ -122,7 +128,7 @@ const SourceForm = () => {
   );
 };
 
-export default SourceForm;
+export default MidpointForm;
 
 {
   /* <div className="row">

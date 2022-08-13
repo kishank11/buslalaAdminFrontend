@@ -11,7 +11,9 @@ import ManageCustomers from "./pages/ManageCustomers";
 import ManageDrivers from "./pages/ManageDrivers";
 import ManageSubadmin from "./pages/ManageSubadmin";
 import ManageSource from "./pages/ManageSource";
+import ManageMidpoint from "./pages/ManageMidpoint";
 import ManageDestination from "./pages/ManageDestination";
+
 // import ManageFare from "./pages/ManageFare"
 import ManageRoutes from "./pages/ManageRoutes";
 import Login from "./pages/Login";
@@ -23,6 +25,8 @@ import SourceForm from "./pages/Forms/SourceForm";
 import DestinationForm from "./pages/Forms/DestinationForm";
 import AllRoutesForms from "./pages/Forms/AllRoutesForms";
 import SubAdminForm from "./pages/Forms/SubAdminForm";
+import MidpointForm from "./pages/Forms/MidpointForm";
+
 import CustomerView from "./pages/Views/CustomerView";
 import DriverView from "./pages/Views/DriverView";
 import RouteView from "./pages/Views/RouteView";
@@ -83,6 +87,8 @@ const App = () => {
               <Route path="/manage-drivers" element={<ManageDrivers />} />
               <Route path="/manage-subadmin" element={<ManageSubadmin />} />
               <Route path="/manage-source" element={<ManageSource />} />
+              <Route path="/manage-midpoint" element={<ManageMidpoint />} />
+
               <Route
                 path="/manage-destination"
                 element={<ManageDestination />}
@@ -101,7 +107,13 @@ const App = () => {
                 path="/new-destination-form"
                 element={<DestinationForm />}
               />
+              <Route path="/new-midpoint-form" element={<MidpointForm />} />
               <Route path="/edit-source-form/:id" element={<SourceForm />} />
+              <Route
+                path="/edit-midpoint-form/:id"
+                element={<MidpointForm />}
+              />
+
               <Route
                 path="/edit-destination-form/:id"
                 element={<DestinationForm />}
