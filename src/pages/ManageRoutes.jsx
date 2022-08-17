@@ -77,6 +77,8 @@ const ManageRoutes = () => {
                   <TableCell align="center">Arrival Time</TableCell>
                   <TableCell align="center">Departure Date</TableCell>
                   <TableCell align="center">Return Date</TableCell>
+                  <TableCell align="center">Stop Fare</TableCell>
+
                   <TableCell align="center">Edit</TableCell>
                   <TableCell align="center">View Seats</TableCell>
                   <TableCell align="center">Running Status</TableCell>
@@ -102,6 +104,7 @@ const ManageRoutes = () => {
                       {row.time.dept ? `${row.time.dept}` : ""}
                     </TableCell>
                     <TableCell align="center">{row.time.arr}</TableCell>
+
                     <TableCell align="center">
                       {row.date
                         ? moment(row.date).format("DD MMM YYYY")
@@ -111,6 +114,9 @@ const ManageRoutes = () => {
                       {row.returnDate
                         ? `${moment(row.returnDate).format("DD MMM YYYY")}`
                         : ""}
+                    </TableCell>
+                    <TableCell align="center">
+                      {row.stopfare ? `${row.stopfare}` : ""}
                     </TableCell>
                     <TableCell align="center">
                       <Link to={`/all-routes-form/${row._id}`}>

@@ -25,6 +25,8 @@ const AllRoutesForms = () => {
   const [busID, setBusID] = useState([]);
   const [tripType, setTripType] = useState("");
   const [duration, setDuration] = useState("");
+  const [stopfare, setStopfare] = useState(0);
+
   const [departureTime, setDepartureTime] = useState("");
   const [arrivalTime, setArrivalTime] = useState("");
   const [departureDate, setDepartureDate] = useState("");
@@ -103,6 +105,7 @@ const AllRoutesForms = () => {
             moment(response.data.data.arrDate).format("yyyy-MM-DD")
           );
           setTripType(response.data.data.type);
+          setStopfare(response.data.data.stopfare);
           setDuration(response.data.data.duration);
         })
         .catch((error) => {
@@ -139,6 +142,7 @@ const AllRoutesForms = () => {
           deptTime: departureTime.toString(),
           arrTime: arrivalTime.toString(),
           deptDate: departureDate.toString(),
+          stopfare: stopfare.toString(),
           // returnDate: arrivalDate,
           duration: duration.toString(),
           type: tripType,
@@ -171,6 +175,7 @@ const AllRoutesForms = () => {
           deptTime: departureTime.toString(),
           arrTime: arrivalTime.toString(),
           deptDate: departureDate.toString(),
+          stopfare: stopfare.toString(),
           returnDate: arrivalDate.toString(),
           duration: duration.toString(),
           type: tripType,
@@ -336,6 +341,14 @@ const AllRoutesForms = () => {
             placeholder="Enter the duration"
             onChange={(e) => setDuration(e.target.value)}
             value={duration}
+            className="rounded-md w-64 h-10 p-6 mt-4 border-black border-[1.5px] outline-none"
+          />
+          <span className="text-2xl">Enter the Stop Fare:</span>
+          <input
+            type="number"
+            placeholder="Enter the Bus Stop fare"
+            onChange={(e) => setStopfare(e.target.value)}
+            value={stopfare}
             className="rounded-md w-64 h-10 p-6 mt-4 border-black border-[1.5px] outline-none"
           />
         </div>
