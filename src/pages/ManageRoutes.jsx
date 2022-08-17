@@ -69,7 +69,7 @@ const ManageRoutes = () => {
               >
                 <TableRow>
                   <TableCell>Source</TableCell>
-                  <TableCell align="center">Mid-point</TableCell>
+
                   <TableCell align="center">Destination</TableCell>
                   <TableCell align="center">Driver ID</TableCell>
                   <TableCell align="center">Bus ID</TableCell>
@@ -90,9 +90,7 @@ const ManageRoutes = () => {
                     <TableCell component="th" scope="row">
                       {row.sourceId ? `${row?.sourceId?.name}` : ""}
                     </TableCell>
-                    <TableCell align="center">
-                      {row.destinationId ? `${row?.midpointId?.name}` : ""}
-                    </TableCell>
+
                     <TableCell align="center">
                       {row.destinationId ? `${row?.destinationId?.name}` : ""}
                     </TableCell>
