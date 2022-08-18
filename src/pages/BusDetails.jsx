@@ -91,7 +91,7 @@ const BusDetails = () => {
                   <TableCell align="center">Bus Type</TableCell>
                   <TableCell align="center">Fare of Upper Berth</TableCell>
                   <TableCell align="center">Fare of Lower Berth</TableCell>
-                  <TableCell align="center">Fare of Midpoint</TableCell>
+                  <TableCell align="center">Fare of Lower Sleeper</TableCell>
 
                   <TableCell align="center">Seats of Seater</TableCell>
                   <TableCell align="center">Seats of Sleeper</TableCell>
