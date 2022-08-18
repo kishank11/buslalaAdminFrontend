@@ -276,7 +276,7 @@ const BusDetailsForm = () => {
             <span className="text-xl">Enter the Fare for Lower Sleeper</span>
             <input
               type="number"
-              placeholder="Enter the midpoint fare"
+              placeholder="Enter the Lower Sleeper fare"
               className={InputStyle}
               value={lowerSleeperFare}
               onChange={(e) => setLowerSleeperFare(e.target.value)}
