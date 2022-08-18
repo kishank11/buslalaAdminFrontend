@@ -111,7 +111,9 @@ const BusDetails = () => {
                     <TableCell align="center">{data.busType}</TableCell>
                     <TableCell align="center">{data.fare.upperBerth}</TableCell>
                     <TableCell align="center">{data.fare.lowerBerth}</TableCell>
-                    <TableCell align="center">{data.fare.midpoint}</TableCell>
+                    <TableCell align="center">
+                      {data.fare.lowerSleeper}
+                    </TableCell>
 
                     <TableCell align="center">{data.total_seater}</TableCell>
                     <TableCell align="center">{data.total_sleeper}</TableCell>
