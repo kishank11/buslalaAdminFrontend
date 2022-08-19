@@ -182,6 +182,7 @@ const AllRoutesForms = () => {
         },
         {
           headers: { Authorization: getToken() },
+          "access-control-allow-origin": "*",
         }
       )
       .then((response) => {
@@ -345,7 +346,7 @@ const AllRoutesForms = () => {
           />
           <span className="text-2xl">Enter the Stop Fare:</span>
           <input
-            type="number"
+            type="text"
             placeholder="Enter the Bus Stop fare"
             onChange={(e) => setStopfare(e.target.value)}
             value={stopfare}

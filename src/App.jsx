@@ -109,6 +109,7 @@ const App = () => {
               />
               <Route path="/new-midpoint-form" element={<MidpointForm />} />
               <Route path="/edit-source-form/:id" element={<SourceForm />} />
+              <Route path="/booking-details/:id" element={<BookingDetails />} />
               <Route
                 path="/edit-midpoint-form/:id"
                 element={<MidpointForm />}

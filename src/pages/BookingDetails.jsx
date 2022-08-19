@@ -14,11 +14,12 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 // import Edit from '../components/Edit';
 
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 const BookingDetails = () => {
   const [bookingDetailsData, setBookingDetailsData] = useState();
   const [loading, setLoading] = useState(true);
+  let { bookingId } = useParams();
 
   useEffect(() => {
     axios
@@ -38,6 +39,28 @@ const BookingDetails = () => {
       });
   }, []);
 
+  useEffect(() => {}, []);
+
+  const editSubmitHandler = async (id) => {
+    // console.log(sourceName);
+    await axios
+      .put(
+        `https://sea-turtle-app-5sz9y.ondigitalocean.app/api/admin/${id}/updateBookingDetails`,
+        {
+          status: "cancelled",
+        },
+        {
+          headers: { Authorization: getToken() },
+        }
+      )
+      .then((response) => {
+        window.location.reload();
+        console.log(response);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
   return (
     <React.Fragment>
       {loading ? (
@@ -75,16 +98,22 @@ const BookingDetails = () => {
                     <TableCell>{data.tripId?.busId?.name}</TableCell>
                     <TableCell>{data.tripId?.sourceId?.name}</TableCell>
                     <TableCell>{data.tripId?.destinationId?.name}</TableCell>
-                    <TableCell align="center">{data.name}</TableCell>
-                    <TableCell align="center">{data.price}</TableCell>
-                    <TableCell align="center">{data.status}</TableCell>
+                    <TableCell align="center">{data?.name}</TableCell>
+                    <TableCell align="center">{data?.price}</TableCell>
+                    <TableCell align="center">{data?.status}</TableCell>
                     {/* <TableCell align="center"><Edit title="Edit"/></TableCell> */}
                     <TableCell align="center">
-                      <Link to={`/booking-details/view-booking/${data._id}`}>
+                      <Link to={`/booking-details/view-booking/${data?._id}`}>
                         <View title="View" />
                       </Link>
-                      <Link to={`/booking-details/view-booking/${data._id}`}>
-                        <View title="Cancel" onClick={(e) => {}} />
+                      <Link to={`/booking-details/`}>
+                        <button
+                          onClick={() => {
+                            editSubmitHandler(data._id);
+                          }}
+                        >
+                          CANCEL
+                        </button>
                       </Link>
                     </TableCell>
                   </TableRow>

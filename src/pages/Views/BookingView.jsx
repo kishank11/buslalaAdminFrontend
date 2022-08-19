@@ -46,7 +46,7 @@ const BookingView = () => {
             <Row title="Name" data={bookingData.name} />
             <Row title="Email" data={bookingData.email} />
             <Row title="Phone Number" data={bookingData.ph_number} />
-            <Row title="Status" data={bookingData.status} />
+            <Row title="Status" data={bookingData?.status} />
             <Row title="1st Seat" data={bookingData.seat_number1} />
             {bookingData.seat_number2 ? (
               <Row title="2nd Seat" data={bookingData.seat_number2} />
@@ -55,15 +55,15 @@ const BookingView = () => {
             )}
             <Row
               title="Date of Booking Ticket"
-              data={moment(bookingData.date).format("DD MMM YYYY")}
+              data={moment(bookingData?.date).format("DD MMM YYYY")}
             />
             <Row
               title="Trip Date"
-              data={moment(bookingData.tripId.date).format("DD MMM YYYY")}
+              data={moment(bookingData?.tripId?.date).format("DD MMM YYYY")}
             />
-            <Row title="Trip Time" data={bookingData.tripId.time.dept} />
-            <Row title="Customer Email" data={bookingData.email} />
-            <Row title="Customer Mobile" data={bookingData.ph_number} />
+            <Row title="Trip Time" data={bookingData?.tripId?.time?.dept} />
+            <Row title="Customer Email" data={bookingData?.email} />
+            <Row title="Customer Mobile" data={bookingData?.ph_number} />
 
             <img src={bookingData.doc_image} width="500" />
           </div>

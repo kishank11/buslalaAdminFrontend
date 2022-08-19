@@ -50,13 +50,13 @@ const LocationDetails = () => {
                             <TableCell component="th" scope="row">
                                 {row.busNo}
                             </TableCell>
-                            <TableCell align="center">{row.fare}</TableCell>
-                            <TableCell align="center">{row.sourceLocation}</TableCell>
-                            <TableCell align="center">{row.destination}</TableCell>
-                            <TableCell align="center">{row.date}</TableCell>
-                            <TableCell align="center">{row.time}</TableCell>
-                            <TableCell align="center">{row.dropPoints}</TableCell>
-                            <TableCell align="center">{row.vehicleLocation}</TableCell>
+                            <TableCell align="center">{row?.fare}</TableCell>
+                            <TableCell align="center">{row?.sourceLocation}</TableCell>
+                            <TableCell align="center">{row?.destination}</TableCell>
+                            <TableCell align="center">{row?.date}</TableCell>
+                            <TableCell align="center">{row?.time}</TableCell>
+                            <TableCell align="center">{row?.dropPoints}</TableCell>
+                            <TableCell align="center">{row?.vehicleLocation}</TableCell>
                         </TableRow>
                     ))}
                     </TableBody>
