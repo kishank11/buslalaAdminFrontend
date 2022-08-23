@@ -18,7 +18,8 @@ import AddNewButton from "../components/AddNewButton";
 const ManageSource = () => {
   const [sourceData, setSourceData] = useState();
   const [loading, setLoading] = useState(true);
-
+  const [search, setSearch] = useState("");
+  const [filtered, setFiltered] = useState([]);
   useEffect(() => {
     axios
       .get("https://sea-turtle-app-5sz9y.ondigitalocean.app/api/admin/source", {
@@ -33,6 +34,18 @@ const ManageSource = () => {
       });
   }, []);
 
+  useEffect(() => {
+    if (search != "") {
+      const new1 = sourceData.filter((result) => {
+        return Object.values(result)
+          .join("")
+          .toLowerCase()
+          .includes(search.toLowerCase());
+      });
+      setFiltered(new1);
+      console.log(new1);
+    }
+  }, [search]);
   return (
     <React.Fragment>
       {loading ? (
@@ -46,7 +59,14 @@ const ManageSource = () => {
               <GrBus className="mr-4" />
               Manage Source
             </div>
-
+            <input
+              type="text"
+              value={search}
+              placeholder="search"
+              onChange={(e) => {
+                setSearch(e.target.value);
+              }}
+            ></input>
             <Link to="/new-source-form">
               <AddNewButton title="Add New Source" />
             </Link>
@@ -67,24 +87,43 @@ const ManageSource = () => {
                 </TableRow>
               </TableHead>
               <TableBody>
-                {sourceData?.map((data) => (
-                  <TableRow key={data._id}>
-                    <TableCell component="th" scope="row">
-                      {`Source_${data._id.slice(-4)}`}
-                    </TableCell>
-                    <TableCell align="center">{data.name}</TableCell>
-                    <TableCell align="center">
-                      {data?.pick_up_time?.length >= 1
-                        ? `${data.pick_up_time}`
-                        : "7:05 PM"}
-                    </TableCell>
-                    <TableCell align="center">
-                      <Link to={`/edit-source-form/${data._id}`}>
-                        <Edit title="Edit" />
-                      </Link>
-                    </TableCell>
-                  </TableRow>
-                ))}
+                {!search
+                  ? sourceData?.map((data) => (
+                      <TableRow key={data._id}>
+                        <TableCell component="th" scope="row">
+                          {`${data._id}`}
+                        </TableCell>
+                        <TableCell align="center">{data.name}</TableCell>
+                        <TableCell align="center">
+                          {data?.pick_up_time?.length >= 1
+                            ? `${data.pick_up_time}`
+                            : "7:05 PM"}
+                        </TableCell>
+                        <TableCell align="center">
+                          <Link to={`/edit-source-form/${data._id}`}>
+                            <Edit title="Edit" />
+                          </Link>
+                        </TableCell>
+                      </TableRow>
+                    ))
+                  : filtered?.map((data) => (
+                      <TableRow key={data._id}>
+                        <TableCell component="th" scope="row">
+                          {`${data._id}`}
+                        </TableCell>
+                        <TableCell align="center">{data.name}</TableCell>
+                        <TableCell align="center">
+                          {data?.pick_up_time?.length >= 1
+                            ? `${data.pick_up_time}`
+                            : "7:05 PM"}
+                        </TableCell>
+                        <TableCell align="center">
+                          <Link to={`/edit-source-form/${data._id}`}>
+                            <Edit title="Edit" />
+                          </Link>
+                        </TableCell>
+                      </TableRow>
+                    ))}
               </TableBody>
             </Table>
           </TableContainer>

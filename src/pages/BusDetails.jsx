@@ -18,7 +18,8 @@ import ScaleLoader from "react-spinners/ScaleLoader";
 const BusDetails = () => {
   const [busDetailsData, setBusDetailsData] = useState();
   const [loading, setLoading] = useState(true);
-
+  const [search, setSearch] = useState("");
+  const [filtered, setFiltered] = useState([]);
   useEffect(() => {
     axios
       .get(
@@ -57,6 +58,18 @@ const BusDetails = () => {
         console.log(err);
       });
   };
+  useEffect(() => {
+    if (search != "") {
+      const new1 = busDetailsData.filter((result) => {
+        return Object.values(result)
+          .join("")
+          .toLowerCase()
+          .includes(search.toLowerCase());
+      });
+      setFiltered(new1);
+      console.log(new1);
+    }
+  }, [search]);
 
   return (
     <React.Fragment>
@@ -71,7 +84,14 @@ const BusDetails = () => {
               <GrBus className="mr-4" />
               Bus Details
             </div>
-
+            <input
+              type="text"
+              value={search}
+              placeholder="search"
+              onChange={(e) => {
+                setSearch(e.target.value);
+              }}
+            ></input>
             <Link to="/addBus">
               <AddNewButton title="Add New Bus" />
             </Link>
@@ -101,38 +121,87 @@ const BusDetails = () => {
                 </TableRow>
               </TableHead>
               <TableBody>
-                {busDetailsData?.map((data) => (
-                  <TableRow key={data._id}>
-                    <TableCell component="th" scope="row">
-                      {`Bus_${data._id.slice(-5)}`}
-                    </TableCell>
-                    <TableCell align="center">{data.name}</TableCell>
-                    <TableCell align="center">{data.bus_model}</TableCell>
-                    <TableCell align="center">{data.busType}</TableCell>
-                    <TableCell align="center">{data.fare.upperBerth}</TableCell>
-                    <TableCell align="center">{data.fare.lowerBerth}</TableCell>
-                    <TableCell align="center">
-                      {data.fare.lowerSleeper}
-                    </TableCell>
+                {!search
+                  ? busDetailsData?.map((data) => (
+                      <TableRow key={data._id}>
+                        <TableCell component="th" scope="row">
+                          {`Bus_${data._id.slice(-5)}`}
+                        </TableCell>
+                        <TableCell align="center">{data.name}</TableCell>
+                        <TableCell align="center">{data.bus_model}</TableCell>
+                        <TableCell align="center">{data.busType}</TableCell>
+                        <TableCell align="center">
+                          {data.fare.upperBerth}
+                        </TableCell>
+                        <TableCell align="center">
+                          {data.fare.lowerBerth}
+                        </TableCell>
+                        <TableCell align="center">
+                          {data.fare.lowerSleeper}
+                        </TableCell>
 
-                    <TableCell align="center">{data.total_seater}</TableCell>
-                    <TableCell align="center">{data.total_sleeper}</TableCell>
-                    <TableCell align="center">{data.busCapacity}</TableCell>
-                    <TableCell align="center">
-                      <Link to={`/edit-busDetails-form/${data._id}`}>
-                        <Edit title="Edit" />
-                      </Link>
-                    </TableCell>
-                    <TableCell align="center">
-                      <button
-                        className="bg-red-600 h-7 w-24 rounded-md text-white"
-                        onClick={() => deleteHandler(data._id)}
-                      >
-                        Delete
-                      </button>
-                    </TableCell>
-                  </TableRow>
-                ))}
+                        <TableCell align="center">
+                          {data.total_seater}
+                        </TableCell>
+                        <TableCell align="center">
+                          {data.total_sleeper}
+                        </TableCell>
+                        <TableCell align="center">{data.busCapacity}</TableCell>
+                        <TableCell align="center">
+                          <Link to={`/edit-busDetails-form/${data._id}`}>
+                            <Edit title="Edit" />
+                          </Link>
+                        </TableCell>
+                        <TableCell align="center">
+                          <button
+                            className="bg-red-600 h-7 w-24 rounded-md text-white"
+                            onClick={() => deleteHandler(data._id)}
+                          >
+                            Delete
+                          </button>
+                        </TableCell>
+                      </TableRow>
+                    ))
+                  : filtered?.map((data) => (
+                      <TableRow key={data._id}>
+                        <TableCell component="th" scope="row">
+                          {`Bus_${data._id.slice(-5)}`}
+                        </TableCell>
+                        <TableCell align="center">{data.name}</TableCell>
+                        <TableCell align="center">{data.bus_model}</TableCell>
+                        <TableCell align="center">{data.busType}</TableCell>
+                        <TableCell align="center">
+                          {data.fare.upperBerth}
+                        </TableCell>
+                        <TableCell align="center">
+                          {data.fare.lowerBerth}
+                        </TableCell>
+                        <TableCell align="center">
+                          {data.fare.lowerSleeper}
+                        </TableCell>
+
+                        <TableCell align="center">
+                          {data.total_seater}
+                        </TableCell>
+                        <TableCell align="center">
+                          {data.total_sleeper}
+                        </TableCell>
+                        <TableCell align="center">{data.busCapacity}</TableCell>
+                        <TableCell align="center">
+                          <Link to={`/edit-busDetails-form/${data._id}`}>
+                            <Edit title="Edit" />
+                          </Link>
+                        </TableCell>
+                        <TableCell align="center">
+                          <button
+                            className="bg-red-600 h-7 w-24 rounded-md text-white"
+                            onClick={() => deleteHandler(data._id)}
+                          >
+                            Delete
+                          </button>
+                        </TableCell>
+                      </TableRow>
+                    ))}
               </TableBody>
             </Table>
           </TableContainer>

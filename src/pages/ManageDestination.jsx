@@ -18,6 +18,8 @@ import AddNewButton from "../components/AddNewButton";
 const ManageDestination = () => {
   const [destinationData, setDestinationData] = useState();
   const [loading, setLoading] = useState(true);
+  const [search, setSearch] = useState("");
+  const [filtered, setFiltered] = useState([]);
 
   useEffect(() => {
     axios
@@ -37,6 +39,19 @@ const ManageDestination = () => {
       });
   }, []);
 
+  useEffect(() => {
+    if (search != "") {
+      const new1 = destinationData.filter((result) => {
+        return Object.values(result)
+          .join("")
+          .toLowerCase()
+          .includes(search.toLowerCase());
+      });
+      setFiltered(new1);
+      console.log(new1);
+    }
+  }, [search]);
+
   return (
     <React.Fragment>
       {loading ? (
@@ -50,7 +65,14 @@ const ManageDestination = () => {
               <GrBus className="mr-4" />
               Manage Destination
             </div>
-
+            <input
+              type="text"
+              value={search}
+              placeholder="search"
+              onChange={(e) => {
+                setSearch(e.target.value);
+              }}
+            ></input>
             <Link to="/new-destination-form">
               <AddNewButton title="Add New Destination" />
             </Link>
@@ -71,26 +93,47 @@ const ManageDestination = () => {
                 </TableRow>
               </TableHead>
               <TableBody>
-                {destinationData.map((data) => {
-                  return (
-                    <TableRow key={data._id}>
-                      <TableCell component="th" scope="row">
-                        {data._id}
-                      </TableCell>
-                      <TableCell align="center">{data.name}</TableCell>
-                      <TableCell align="center">
-                        {data?.drop_of_time?.length === 1
-                          ? data.drop_of_time
-                          : "07:15"}
-                      </TableCell>
-                      <TableCell align="center">
-                        <Link to={`/edit-destination-form/${data._id}`}>
-                          <Edit title="Edit" />
-                        </Link>
-                      </TableCell>
-                    </TableRow>
-                  );
-                })}
+                {!search
+                  ? destinationData.map((data) => {
+                      return (
+                        <TableRow key={data._id}>
+                          <TableCell component="th" scope="row">
+                            {data._id}
+                          </TableCell>
+                          <TableCell align="center">{data.name}</TableCell>
+                          <TableCell align="center">
+                            {data?.drop_of_time?.length === 1
+                              ? data.drop_of_time
+                              : "07:15"}
+                          </TableCell>
+                          <TableCell align="center">
+                            <Link to={`/edit-destination-form/${data._id}`}>
+                              <Edit title="Edit" />
+                            </Link>
+                          </TableCell>
+                        </TableRow>
+                      );
+                    })
+                  : filtered.map((data) => {
+                      return (
+                        <TableRow key={data._id}>
+                          <TableCell component="th" scope="row">
+                            {data._id}
+                          </TableCell>
+                          <TableCell align="center">{data.name}</TableCell>
+                          <TableCell align="center">
+                            {data?.drop_of_time?.length === 1
+                              ? data.drop_of_time
+                              : "07:15"}
+                          </TableCell>
+                          <TableCell align="center">
+                            <Link to={`/edit-destination-form/${data._id}`}>
+                              <Edit title="Edit" />
+                            </Link>
+                          </TableCell>
+                        </TableRow>
+                      );
+                    })}
               </TableBody>
             </Table>
           </TableContainer>
