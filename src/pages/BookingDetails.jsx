@@ -19,6 +19,8 @@ import { Link, useParams } from "react-router-dom";
 const BookingDetails = () => {
   const [bookingDetailsData, setBookingDetailsData] = useState();
   const [loading, setLoading] = useState(true);
+  const [search, setSearch] = useState("");
+  const [filtered, setFiltered] = useState([]);
   let { bookingId } = useParams();
 
   useEffect(() => {
@@ -39,7 +41,18 @@ const BookingDetails = () => {
       });
   }, []);
 
-  useEffect(() => {}, []);
+  useEffect(() => {
+    if (search != "") {
+      const new1 = bookingDetailsData.filter((result) => {
+        return Object.values(result)
+          .join("")
+          .toLowerCase()
+          .includes(search.toLowerCase());
+      });
+      setFiltered(new1);
+      console.log(new1);
+    }
+  }, [search]);
 
   const editSubmitHandler = async (id) => {
     // console.log(sourceName);
@@ -77,8 +90,17 @@ const BookingDetails = () => {
                   borderRadius: "12px",
                 }}
               >
+                <input
+                  type="text"
+                  value={search}
+                  placeholder="search"
+                  onChange={(e) => {
+                    setSearch(e.target.value);
+                  }}
+                ></input>
                 <TableRow>
                   <TableCell>ID</TableCell>
+
                   <TableCell>Bus Name</TableCell>
                   <TableCell>From</TableCell>
                   <TableCell>To</TableCell>
@@ -90,34 +112,71 @@ const BookingDetails = () => {
                 </TableRow>
               </TableHead>
               <TableBody>
-                {bookingDetailsData?.map((data) => (
-                  <TableRow key={data._id}>
-                    <TableCell component="th" scope="row">
-                      {data._id}
-                    </TableCell>
-                    <TableCell>{data.tripId?.busId?.name}</TableCell>
-                    <TableCell>{data.tripId?.sourceId?.name}</TableCell>
-                    <TableCell>{data.tripId?.destinationId?.name}</TableCell>
-                    <TableCell align="center">{data?.name}</TableCell>
-                    <TableCell align="center">{data?.price}</TableCell>
-                    <TableCell align="center">{data?.status}</TableCell>
-                    {/* <TableCell align="center"><Edit title="Edit"/></TableCell> */}
-                    <TableCell align="center">
-                      <Link to={`/booking-details/view-booking/${data?._id}`}>
-                        <View title="View" />
-                      </Link>
-                      <Link to={`/booking-details/`}>
-                        <button
-                          onClick={() => {
-                            editSubmitHandler(data._id);
-                          }}
-                        >
-                          CANCEL
-                        </button>
-                      </Link>
-                    </TableCell>
-                  </TableRow>
-                ))}
+                {!search
+                  ? bookingDetailsData?.map((data) => (
+                      <TableRow key={data._id}>
+                        <TableCell component="th" scope="row">
+                          {data._id}
+                        </TableCell>
+                        <TableCell>{data.tripId?.busId?.name}</TableCell>
+                        <TableCell>{data.tripId?.sourceId?.name}</TableCell>
+                        <TableCell>
+                          {data.tripId?.destinationId?.name}
+                        </TableCell>
+                        <TableCell align="center">{data?.name}</TableCell>
+                        <TableCell align="center">{data?.price}</TableCell>
+                        <TableCell align="center">{data?.status}</TableCell>
+                        {/* <TableCell align="center"><Edit title="Edit"/></TableCell> */}
+                        <TableCell align="center">
+                          <Link
+                            to={`/booking-details/view-booking/${data?._id}`}
+                          >
+                            <View title="View" />
+                          </Link>
+                          <Link to={`/booking-details/`}>
+                            <button
+                              onClick={() => {
+                                editSubmitHandler(data._id);
+                              }}
+                            >
+                              CANCEL
+                            </button>
+                          </Link>
+                        </TableCell>
+                      </TableRow>
+                    ))
+                  : filtered?.map((data) => (
+                      <TableRow key={data._id}>
+                        <TableCell component="th" scope="row">
+                          {data._id}
+                        </TableCell>
+                        <TableCell>{data.tripId?.busId?.name}</TableCell>
+                        <TableCell>{data.tripId?.sourceId?.name}</TableCell>
+                        <TableCell>
+                          {data.tripId?.destinationId?.name}
+                        </TableCell>
+                        <TableCell align="center">{data?.name}</TableCell>
+                        <TableCell align="center">{data?.price}</TableCell>
+                        <TableCell align="center">{data?.status}</TableCell>
+                        {/* <TableCell align="center"><Edit title="Edit"/></TableCell> */}
+                        <TableCell align="center">
+                          <Link
+                            to={`/booking-details/view-booking/${data?._id}`}
+                          >
+                            <View title="View" />
+                          </Link>
+                          <Link to={`/booking-details/`}>
+                            <button
+                              onClick={() => {
+                                editSubmitHandler(data._id);
+                              }}
+                            >
+                              CANCEL
+                            </button>
+                          </Link>
+                        </TableCell>
+                      </TableRow>
+                    ))}
               </TableBody>
             </Table>
           </TableContainer>

@@ -22,6 +22,8 @@ import { width } from "@mui/system";
 const ManageRoutes = () => {
   const [allRoutesData, setAllRoutesData] = useState();
   const [loading, setLoading] = useState(true);
+  const [search, setSearch] = useState("");
+  const [filtered, setFiltered] = useState([]);
 
   useEffect(() => {
     axios
@@ -41,6 +43,18 @@ const ManageRoutes = () => {
       });
   }, []);
 
+  useEffect(() => {
+    if (search != "") {
+      const new1 = allRoutesData.filter((result) => {
+        return Object.values(result)
+          .join("")
+          .toLowerCase()
+          .includes(search.toLowerCase());
+      });
+      setFiltered(new1);
+      console.log(new1);
+    }
+  }, [search]);
   return (
     <React.Fragment>
       {loading ? (
@@ -54,6 +68,14 @@ const ManageRoutes = () => {
               <GrBus className="mr-4" />
               Manage Routes
             </div>
+            <input
+              type="text"
+              value={search}
+              placeholder="search"
+              onChange={(e) => {
+                setSearch(e.target.value);
+              }}
+            ></input>
 
             <Link to="/all-routes-form">
               <AddNewButton title="Add New Route" />
@@ -85,64 +107,131 @@ const ManageRoutes = () => {
                 </TableRow>
               </TableHead>
               <TableBody>
-                {allRoutesData?.map((row) => (
-                  <TableRow>
-                    <TableCell component="th" scope="row">
-                      {row.sourceId ? `${row?.sourceId?.name}` : ""}
-                    </TableCell>
+                {!search
+                  ? allRoutesData?.map((row) => (
+                      <TableRow>
+                        <TableCell component="th" scope="row">
+                          {row.sourceId ? `${row?.sourceId?.name}` : ""}
+                        </TableCell>
 
-                    <TableCell align="center">
-                      {row.destinationId ? `${row?.destinationId?.name}` : ""}
-                    </TableCell>
-                    <TableCell align="center">{row._id}</TableCell>
-                    <TableCell align="center">
-                      {row.busId ? row.busId._id : ""}
-                    </TableCell>
-                    <TableCell align="center">
-                      {row.time.dept ? `${row.time.dept}` : ""}
-                    </TableCell>
-                    <TableCell align="center">{row.time.arr}</TableCell>
+                        <TableCell align="center">
+                          {row.destinationId
+                            ? `${row?.destinationId?.name}`
+                            : ""}
+                        </TableCell>
+                        <TableCell align="center">{row._id}</TableCell>
+                        <TableCell align="center">
+                          {row.busId ? row.busId._id : ""}
+                        </TableCell>
+                        <TableCell align="center">
+                          {row.time.dept ? `${row.time.dept}` : ""}
+                        </TableCell>
+                        <TableCell align="center">{row.time.arr}</TableCell>
 
-                    <TableCell align="center">
-                      {row.date
-                        ? moment(row.date).format("DD MMM YYYY")
-                        : moment(row.deptDate).format("DD MMM YYYY")}
-                    </TableCell>
-                    <TableCell align="center">
-                      {row.returnDate
-                        ? `${moment(row.returnDate).format("DD MMM YYYY")}`
-                        : ""}
-                    </TableCell>
-                    <TableCell align="center">
-                      {row.stopfare ? `${row.stopfare}` : ""}
-                    </TableCell>
-                    <TableCell align="center">
-                      <Link to={`/all-routes-form/${row._id}`}>
-                        <Edit title="Edit" />
-                      </Link>
-                    </TableCell>
-                    <TableCell>
-                      <Link to={`/manage-routes/view-router/${row._id}`}>
-                        <Edit title="View" />
-                      </Link>
-                    </TableCell>
-                    <TableCell align="center">
-                      <Link
-                        to={
-                          row.busId
-                            ? `/bus-details/location/${row.busId._id}`
-                            : ""
-                        }
-                      >
-                        <Edit
-                          title={
-                            row.status == "success" ? "Running" : "Not Running"
-                          }
-                        />
-                      </Link>
-                    </TableCell>
-                  </TableRow>
-                ))}
+                        <TableCell align="center">
+                          {row.date
+                            ? moment(row.date).format("DD MMM YYYY")
+                            : moment(row.deptDate).format("DD MMM YYYY")}
+                        </TableCell>
+                        <TableCell align="center">
+                          {row.returnDate
+                            ? `${moment(row.returnDate).format("DD MMM YYYY")}`
+                            : ""}
+                        </TableCell>
+                        <TableCell align="center">
+                          {row.stopfare ? `${row.stopfare}` : ""}
+                        </TableCell>
+                        <TableCell align="center">
+                          <Link to={`/all-routes-form/${row._id}`}>
+                            <Edit title="Edit" />
+                          </Link>
+                        </TableCell>
+                        <TableCell>
+                          <Link to={`/manage-routes/view-router/${row._id}`}>
+                            <Edit title="View" />
+                          </Link>
+                        </TableCell>
+                        <TableCell align="center">
+                          <Link
+                            to={
+                              row.busId
+                                ? `/bus-details/location/${row.busId._id}`
+                                : ""
+                            }
+                          >
+                            <Edit
+                              title={
+                                row.status == "success"
+                                  ? "Running"
+                                  : "Not Running"
+                              }
+                            />
+                          </Link>
+                        </TableCell>
+                      </TableRow>
+                    ))
+                  : filtered?.map((row) => (
+                      <TableRow>
+                        <TableCell component="th" scope="row">
+                          {row.sourceId ? `${row?.sourceId?.name}` : ""}
+                        </TableCell>
+
+                        <TableCell align="center">
+                          {row.destinationId
+                            ? `${row?.destinationId?.name}`
+                            : ""}
+                        </TableCell>
+                        <TableCell align="center">{row._id}</TableCell>
+                        <TableCell align="center">
+                          {row.busId ? row.busId._id : ""}
+                        </TableCell>
+                        <TableCell align="center">
+                          {row.time.dept ? `${row.time.dept}` : ""}
+                        </TableCell>
+                        <TableCell align="center">{row.time.arr}</TableCell>
+
+                        <TableCell align="center">
+                          {row.date
+                            ? moment(row.date).format("DD MMM YYYY")
+                            : moment(row.deptDate).format("DD MMM YYYY")}
+                        </TableCell>
+                        <TableCell align="center">
+                          {row.returnDate
+                            ? `${moment(row.returnDate).format("DD MMM YYYY")}`
+                            : ""}
+                        </TableCell>
+                        <TableCell align="center">
+                          {row.stopfare ? `${row.stopfare}` : ""}
+                        </TableCell>
+                        <TableCell align="center">
+                          <Link to={`/all-routes-form/${row._id}`}>
+                            <Edit title="Edit" />
+                          </Link>
+                        </TableCell>
+                        <TableCell>
+                          <Link to={`/manage-routes/view-router/${row._id}`}>
+                            <Edit title="View" />
+                          </Link>
+                        </TableCell>
+                        <TableCell align="center">
+                          <Link
+                            to={
+                              row.busId
+                                ? `/bus-details/location/${row.busId._id}`
+                                : ""
+                            }
+                          >
+                            <Edit
+                              title={
+                                row.status == "success"
+                                  ? "Running"
+                                  : "Not Running"
+                              }
+                            />
+                          </Link>
+                        </TableCell>
+                      </TableRow>
+                    ))}
               </TableBody>
             </Table>
           </TableContainer>

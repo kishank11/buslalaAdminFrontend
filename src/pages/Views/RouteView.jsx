@@ -95,7 +95,7 @@ const DriverView = () => {
             </Item>
             {tripData?.busId && tripData?.busId.bus_model == "2+1" ? (
               <Grid container spacing={2}>
-                {tripData.seat_number.lowerBerth.map((item, index) => {
+                {tripData.number.map((item, index) => {
                   return (
                     <Grid item xs={4}>
                       <Button
