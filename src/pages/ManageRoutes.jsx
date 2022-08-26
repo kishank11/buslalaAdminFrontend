@@ -95,8 +95,8 @@ const ManageRoutes = () => {
                   <TableCell>Source</TableCell>
 
                   <TableCell align="center">Destination</TableCell>
-                  <TableCell align="center">Driver ID</TableCell>
-                  <TableCell align="center">Bus ID</TableCell>
+                  <TableCell align="center">Driver Name</TableCell>
+                  <TableCell align="center">Bus Name</TableCell>
                   <TableCell align="center">Departure Time</TableCell>
                   <TableCell align="center">Arrival Time</TableCell>
                   <TableCell align="center">Departure Date</TableCell>
@@ -123,7 +123,7 @@ const ManageRoutes = () => {
                         </TableCell>
                         <TableCell align="center">{row._id}</TableCell>
                         <TableCell align="center">
-                          {row.busId ? row.busId._id : ""}
+                          {row?.busId?.name ? row?.busId?.name : ""}
                         </TableCell>
                         <TableCell align="center">
                           {row.time.dept ? `${row.time.dept}` : ""}
