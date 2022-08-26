@@ -45,11 +45,13 @@ const ManageRoutes = () => {
 
   useEffect(() => {
     if (search != "") {
-      const new1 = allRoutesData.filter((result) => {
-        return Object.values(result)
-          .join("")
-          .toLowerCase()
-          .includes(search.toLowerCase());
+      const new1 = allRoutesData?.filter((result) => {
+        if (result?.sourceId?.name) {
+          return Object.values(result?.sourceId)
+            .join("")
+            .toLowerCase()
+            .includes(search.toLowerCase());
+        }
       });
       setFiltered(new1);
       console.log(new1);
