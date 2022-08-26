@@ -43,8 +43,9 @@ const BookingDetails = () => {
 
   useEffect(() => {
     if (search != "") {
+      console.log(bookingDetailsData);
       const new1 = bookingDetailsData.filter((result) => {
-        return Object.values(result)
+        return Object.values(result?.name)
           .join("")
           .toLowerCase()
           .includes(search.toLowerCase());

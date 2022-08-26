@@ -20,6 +20,8 @@ import Edit from "../components/Edit";
 const ManageDrivers = () => {
   const [allDriverData, setAllDriverData] = useState();
   const [loading, setLoading] = useState(true);
+  const [search, setSearch] = useState("");
+  const [filtered, setFiltered] = useState([]);
 
   useEffect(() => {
     axios
@@ -38,6 +40,19 @@ const ManageDrivers = () => {
         console.log(err);
       });
   }, []);
+
+  useEffect(() => {
+    if (search != "") {
+      const new1 = allDriverData.filter((result) => {
+        return Object.values(result)
+          .join("")
+          .toLowerCase()
+          .includes(search.toLowerCase());
+      });
+      setFiltered(new1);
+      console.log(new1);
+    }
+  }, [search]);
 
   const deleteHandler = async (id) => {
     console.log(id);
@@ -72,7 +87,14 @@ const ManageDrivers = () => {
               <GrBus className="mr-4" />
               Manage Drivers
             </div>
-
+            <input
+              type="text"
+              value={search}
+              placeholder="search"
+              onChange={(e) => {
+                setSearch(e.target.value);
+              }}
+            ></input>
             <Link to="/new-driver-form">
               <AddNewButton title="Add New Driver" />
             </Link>
@@ -97,39 +119,73 @@ const ManageDrivers = () => {
                 </TableRow>
               </TableHead>
               <TableBody>
-                {allDriverData?.map((row) => (
-                  <TableRow key={row._id}>
-                    <TableCell component="th" scope="row">
-                      {row._id}
-                    </TableCell>
-                    <TableCell align="center">{row.name}</TableCell>
-                    <TableCell align="center">{row.email}</TableCell>
-                    <TableCell align="center">{row.number}</TableCell>
-                    <TableCell align="center">
-                      <Link to={`/manage-drivers/view-driver/${row._id}`}>
-                        <View title="View" />
-                      </Link>
-                    </TableCell>
-                    <TableCell align="center">
-                      <Link to={`/edit-driver-form/${row._id}`}>
-                        <Edit title="Edit" />
-                      </Link>
-                    </TableCell>
-                    <TableCell align="center">
-                      <div className="bg-violet-600 h-6 rounded-md flex items-center justify-center text-white">
-                        {row.status}
-                      </div>
-                    </TableCell>
-                    <TableCell align="center">
-                      <button
-                        className="bg-red-600 h-7 w-24 rounded-md text-white"
-                        onClick={() => deleteHandler(row._id)}
-                      >
-                        Delete
-                      </button>
-                    </TableCell>
-                  </TableRow>
-                ))}
+                {!search
+                  ? allDriverData?.map((row) => (
+                      <TableRow key={row._id}>
+                        <TableCell component="th" scope="row">
+                          {row._id}
+                        </TableCell>
+                        <TableCell align="center">{row.name}</TableCell>
+                        <TableCell align="center">{row.email}</TableCell>
+                        <TableCell align="center">{row.number}</TableCell>
+                        <TableCell align="center">
+                          <Link to={`/manage-drivers/view-driver/${row._id}`}>
+                            <View title="View" />
+                          </Link>
+                        </TableCell>
+                        <TableCell align="center">
+                          <Link to={`/edit-driver-form/${row._id}`}>
+                            <Edit title="Edit" />
+                          </Link>
+                        </TableCell>
+                        <TableCell align="center">
+                          <div className="bg-violet-600 h-6 rounded-md flex items-center justify-center text-white">
+                            {row.status}
+                          </div>
+                        </TableCell>
+                        <TableCell align="center">
+                          <button
+                            className="bg-red-600 h-7 w-24 rounded-md text-white"
+                            onClick={() => deleteHandler(row._id)}
+                          >
+                            Delete
+                          </button>
+                        </TableCell>
+                      </TableRow>
+                    ))
+                  : filtered?.map((row) => (
+                      <TableRow key={row._id}>
+                        <TableCell component="th" scope="row">
+                          {row._id}
+                        </TableCell>
+                        <TableCell align="center">{row.name}</TableCell>
+                        <TableCell align="center">{row.email}</TableCell>
+                        <TableCell align="center">{row.number}</TableCell>
+                        <TableCell align="center">
+                          <Link to={`/manage-drivers/view-driver/${row._id}`}>
+                            <View title="View" />
+                          </Link>
+                        </TableCell>
+                        <TableCell align="center">
+                          <Link to={`/edit-driver-form/${row._id}`}>
+                            <Edit title="Edit" />
+                          </Link>
+                        </TableCell>
+                        <TableCell align="center">
+                          <div className="bg-violet-600 h-6 rounded-md flex items-center justify-center text-white">
+                            {row.status}
+                          </div>
+                        </TableCell>
+                        <TableCell align="center">
+                          <button
+                            className="bg-red-600 h-7 w-24 rounded-md text-white"
+                            onClick={() => deleteHandler(row._id)}
+                          >
+                            Delete
+                          </button>
+                        </TableCell>
+                      </TableRow>
+                    ))}
               </TableBody>
             </Table>
           </TableContainer>
