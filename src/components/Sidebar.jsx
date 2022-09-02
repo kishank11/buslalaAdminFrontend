@@ -146,7 +146,7 @@ const Sidebar = () => {
             <ListItemIcon>
               <InboxIcon />
             </ListItemIcon>
-            <ListItemText primary="Manage Routes" />
+            <ListItemText primary="Routes" />
             {open ? <ExpandLess /> : <ExpandMore />}
           </ListItemButton>
           <Collapse in={open} timeout="auto" unmountOnExit>
