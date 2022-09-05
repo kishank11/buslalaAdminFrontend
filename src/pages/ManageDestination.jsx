@@ -102,9 +102,7 @@ const ManageDestination = () => {
                           </TableCell>
                           <TableCell align="center">{data.name}</TableCell>
                           <TableCell align="center">
-                            {data?.drop_of_time?.length === 1
-                              ? data.drop_of_time
-                              : "07:15"}
+                            {data?.drop_of_time}
                           </TableCell>
                           <TableCell align="center">
                             <Link to={`/edit-destination-form/${data._id}`}>
@@ -122,9 +120,7 @@ const ManageDestination = () => {
                           </TableCell>
                           <TableCell align="center">{data.name}</TableCell>
                           <TableCell align="center">
-                            {data?.drop_of_time?.length === 1
-                              ? data.drop_of_time
-                              : "07:15"}
+                            {data?.drop_of_time}
                           </TableCell>
                           <TableCell align="center">
                             <Link to={`/edit-destination-form/${data._id}`}>
