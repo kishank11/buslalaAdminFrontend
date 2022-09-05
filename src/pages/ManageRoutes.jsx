@@ -34,8 +34,8 @@ const ManageRoutes = () => {
         }
       )
       .then((response) => {
-        console.log(response.data.data);
-        setAllRoutesData(response.data.data);
+        console.log(response?.data?.data);
+        setAllRoutesData(response?.data?.data);
         setLoading(false);
       })
       .catch((err) => {
@@ -101,7 +101,9 @@ const ManageRoutes = () => {
                   <TableCell align="center">Arrival Time</TableCell>
                   <TableCell align="center">Departure Date</TableCell>
                   <TableCell align="center">Return Date</TableCell>
-                  <TableCell align="center">Stop Fare</TableCell>
+                  <TableCell align="center">Mid Lower Berth Fare</TableCell>
+                  <TableCell align="center">Mid Upper Berth Fare</TableCell>
+                  <TableCell align="center">Mid Lower Sleeper Fare</TableCell>
 
                   <TableCell align="center">Edit</TableCell>
                   <TableCell align="center">View Seats</TableCell>
@@ -141,7 +143,13 @@ const ManageRoutes = () => {
                             : ""}
                         </TableCell>
                         <TableCell align="center">
-                          {row.stopfare ? `${row.stopfare}` : ""}
+                          {row?.midpoint ? `${row?.midpoint.lowerBerth}` : ""}
+                        </TableCell>
+                        <TableCell align="center">
+                          {row?.midpoint ? `${row?.midpoint.upperBerth}` : ""}
+                        </TableCell>
+                        <TableCell align="center">
+                          {row?.midpoint ? `${row?.midpoint.lowerSleeper}` : ""}
                         </TableCell>
                         <TableCell align="center">
                           <Link to={`/all-routes-form/${row._id}`}>
@@ -203,7 +211,13 @@ const ManageRoutes = () => {
                             : ""}
                         </TableCell>
                         <TableCell align="center">
-                          {row.stopfare ? `${row.stopfare}` : ""}
+                          {row?.midpoint ? `${row?.midpint.lowerBerth}` : ""}
+                        </TableCell>
+                        <TableCell align="center">
+                          {row?.midpoint ? `${row?.midpint.upperBerth}` : ""}
+                        </TableCell>
+                        <TableCell align="center">
+                          {row?.midpoint ? `${row?.midpint.lowerSleeper}` : ""}
                         </TableCell>
                         <TableCell align="center">
                           <Link to={`/all-routes-form/${row._id}`}>

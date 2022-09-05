@@ -25,8 +25,9 @@ const AllRoutesForms = () => {
   const [busID, setBusID] = useState([]);
   const [tripType, setTripType] = useState("");
   const [duration, setDuration] = useState("");
-  const [stopfare, setStopfare] = useState(0);
-
+  const [lowerBerth, setLowerBerth] = useState(0);
+  const [upperBerth, setUpperBerth] = useState(0);
+  const [lowerSleeper, setLowerSleeper] = useState(0);
   const [departureTime, setDepartureTime] = useState("");
   const [arrivalTime, setArrivalTime] = useState("");
   const [departureDate, setDepartureDate] = useState("");
@@ -105,7 +106,11 @@ const AllRoutesForms = () => {
             moment(response.data.data.arrDate).format("yyyy-MM-DD")
           );
           setTripType(response.data.data.type);
-          setStopfare(response.data.data.stopfare);
+          setLowerBerth(response.data.data.midpoint.lowerBerth);
+          setUpperBerth(response.data.data.midpoint.upperBerth);
+
+          setLowerSleeper(response.data.data.midpoint.lowerSleeper);
+
           setDuration(response.data.data.duration);
         })
         .catch((error) => {
@@ -142,7 +147,11 @@ const AllRoutesForms = () => {
           deptTime: departureTime.toString(),
           arrTime: arrivalTime.toString(),
           deptDate: departureDate.toString(),
-          stopfare: stopfare.toString(),
+
+          lowerBerth: lowerBerth,
+          upperBerth: upperBerth,
+          lowerSleeper: lowerSleeper,
+
           // returnDate: arrivalDate,
           duration: duration.toString(),
           type: tripType,
@@ -175,7 +184,9 @@ const AllRoutesForms = () => {
           deptTime: departureTime.toString(),
           arrTime: arrivalTime.toString(),
           deptDate: departureDate.toString(),
-          stopfare: stopfare.toString(),
+          lowerBerth: lowerBerth,
+          upperBerth: upperBerth,
+          lowerSleeper: lowerSleeper,
           returnDate: arrivalDate.toString(),
           duration: duration.toString(),
           type: tripType,
@@ -344,12 +355,28 @@ const AllRoutesForms = () => {
             value={duration}
             className="rounded-md w-64 h-10 p-6 mt-4 border-black border-[1.5px] outline-none"
           />
-          <span className="text-2xl">Enter the Stop Fare:</span>
+          <span className="text-2xl">Enter the Lower Berth</span>
           <input
             type="text"
-            placeholder="Enter the Bus Stop fare"
-            onChange={(e) => setStopfare(e.target.value)}
-            value={stopfare}
+            placeholder="Enter Lower Berth fare"
+            onChange={(e) => setLowerBerth(e.target.value)}
+            value={lowerBerth}
+            className="rounded-md w-64 h-10 p-6 mt-4 border-black border-[1.5px] outline-none"
+          />
+          <span className="text-2xl">Enter the Upper Berth</span>
+          <input
+            type="text"
+            placeholder="Enter Upper Berth fare"
+            onChange={(e) => setUpperBerth(e.target.value)}
+            value={upperBerth}
+            className="rounded-md w-64 h-10 p-6 mt-4 border-black border-[1.5px] outline-none"
+          />
+          <span className="text-2xl">Enter the Lower Sleeper</span>
+          <input
+            type="text"
+            placeholder="Enter Lower Sleeper fare"
+            onChange={(e) => setLowerSleeper(e.target.value)}
+            value={lowerSleeper}
             className="rounded-md w-64 h-10 p-6 mt-4 border-black border-[1.5px] outline-none"
           />
         </div>
