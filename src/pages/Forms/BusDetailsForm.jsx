@@ -86,9 +86,13 @@ const BusDetailsForm = () => {
     };
     console.log(data);
     await axios
-      .post("http://localhost:3001/api/admin/uploadBusDetails", data, {
-        headers: { Authorization: getToken() },
-      })
+      .post(
+        "https://sea-turtle-app-5sz9y.ondigitalocean.app/api/admin/uploadBusDetails",
+        data,
+        {
+          headers: { Authorization: getToken() },
+        }
+      )
       .then((response) => {
         console.log(response);
         if (response) {
