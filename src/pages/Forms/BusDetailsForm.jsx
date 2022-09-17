@@ -34,7 +34,7 @@ const BusDetailsForm = () => {
   const [lowerSleeperFare, setLowerSleeperFare] = useState("");
 
   const [busTypeAC, setBusTypeAC] = useState("");
-
+  const [side, setSide] = useState("");
   const [seats, setSeats] = useState([]);
   const [seatNumber, setSeatNumber] = useState("");
   const [seatType, setSeatType] = useState("");
@@ -46,6 +46,7 @@ const BusDetailsForm = () => {
         number: seatNumber,
         type: seatType,
         place: placeType,
+        side: side,
         status: false,
       },
     ]);
@@ -62,7 +63,7 @@ const BusDetailsForm = () => {
     setLowerberthFare("");
     setUpperberthFare("");
     setLowerSleeperFare("");
-
+    setSide("");
     setBusTypeAC("");
   };
 
@@ -77,6 +78,7 @@ const BusDetailsForm = () => {
         upperBerth: upperberthFare,
         lowerSleeper: lowerSleeperFare,
       },
+
       bus_model: busModel,
       busCapacity,
       name: busName,
@@ -84,13 +86,9 @@ const BusDetailsForm = () => {
     };
     console.log(data);
     await axios
-      .post(
-        "https://sea-turtle-app-5sz9y.ondigitalocean.app/api/admin/uploadBusDetails",
-        data,
-        {
-          headers: { Authorization: getToken() },
-        }
-      )
+      .post("http://localhost:3001/api/admin/uploadBusDetails", data, {
+        headers: { Authorization: getToken() },
+      })
       .then((response) => {
         console.log(response);
         if (response) {
@@ -123,6 +121,7 @@ const BusDetailsForm = () => {
           setLowerberthFare(res.data.data.fare.lowerBerth);
           setUpperberthFare(res.data.data.fare.upperBerth);
           setLowerSleeperFare(res.data.data.fare.lowerSleeper);
+          setSide(res.data.data.side);
 
           setBusTypeAC(res.data.data.busType);
         })
@@ -150,6 +149,7 @@ const BusDetailsForm = () => {
           bus_model: busModel,
           busCapacity,
           name: busName,
+          side: side,
           busType: busTypeAC,
         },
         {
@@ -284,6 +284,9 @@ const BusDetailsForm = () => {
           </div>
         </div>
 
+        <br />
+        <br />
+
         <div style={{ marginBottom: 10 }}>
           <TextField
             id="outlined-basic"
@@ -321,6 +324,20 @@ const BusDetailsForm = () => {
               <MenuItem value="upperBirthA">UpperBirth A (Left Side)</MenuItem>
               <MenuItem value="upperBirthB">UpperBirth B (Right Side)</MenuItem>
               <MenuItem value="backOfBus">Back Seats</MenuItem>
+            </Select>
+          </FormControl>
+
+          <FormControl sx={{ width: 200, ml: 1 }}>
+            <InputLabel id="seat-type-select-label">Side</InputLabel>
+            <Select
+              labelId="seat-type-select-label"
+              id="seat-type-select"
+              value={side}
+              label="Side"
+              onChange={(e) => setSide(e.target.value)}
+            >
+              <MenuItem value="left">Left</MenuItem>
+              <MenuItem value="right">Right</MenuItem>
             </Select>
           </FormControl>
           <Button onClick={addNewSeat} variant="contained" sx={{ m: 1 }}>
