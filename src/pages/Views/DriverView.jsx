@@ -29,15 +29,12 @@ const DriverView = () => {
   }, []);
   return (
     <React.Fragment>
-      
       {loading ? (
         <div className="h-full flex items-center justify-center">
           <ScaleLoader color="green" />
         </div>
       ) : (
-        
         <div className="mt-8">
-          
           <div className="px-60 h-16 flex items-center justify-between mb-4">
             <p className="text-3xl">Viewing Driver</p>
             <Link to="/manage-drivers">
