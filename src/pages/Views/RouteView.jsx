@@ -3,6 +3,7 @@ import axios from "axios";
 import { Link, useParams } from "react-router-dom";
 import { BsArrowReturnLeft } from "react-icons/bs";
 import { getToken } from "../../utils/Common";
+import { hot } from "react-hot-loader/root";
 
 import Grid from "@mui/material/Grid";
 import Paper from "@mui/material/Paper";
@@ -11,6 +12,10 @@ import { styled } from "@mui/material/styles";
 import { Typography } from "@mui/material";
 
 const DriverView = () => {
+  const refreshPage = () => {
+    window.location.reload();
+  };
+  // window.location.reload();
   const { id } = useParams();
 
   const [tripData, setTripData] = useState({});
@@ -36,7 +41,7 @@ const DriverView = () => {
         console.log(err);
       });
     setIsSending(false);
-  }, [isSending]);
+  }, []);
 
   useEffect(() => {
     const lowerBerth = [];
@@ -64,6 +69,7 @@ const DriverView = () => {
           `https://sea-turtle-app-5sz9y.ondigitalocean.app/api/admin/bookBus/${id}`,
           {
             seat_number1: item.number,
+            
           },
           {
             headers: { Authorization: getToken() },
@@ -80,6 +86,8 @@ const DriverView = () => {
     } else {
       console.log(item);
       setIsSending(true);
+
+      
       await axios
         .patch(
           `https://sea-turtle-app-5sz9y.ondigitalocean.app/api/admin/unBookBus/${id}`,
@@ -102,6 +110,7 @@ const DriverView = () => {
 
   return (
     <React.Fragment>
+      <button onClick={refreshPage}>GET SEATS</button>
       <div className="h-full flex items-center justify-center">
         <Grid
           container

@@ -95,6 +95,7 @@ const BusDetailsForm = () => {
       )
       .then((response) => {
         console.log(response);
+        console.log(data);
         if (response) {
           history("/bus-details");
         }

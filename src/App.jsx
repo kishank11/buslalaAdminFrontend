@@ -13,7 +13,7 @@ import ManageSubadmin from "./pages/ManageSubadmin";
 import ManageSource from "./pages/ManageSource";
 import ManageMidpoint from "./pages/ManageMidpoint";
 import ManageDestination from "./pages/ManageDestination";
-
+import { hot } from "react-hot-loader/root";
 // import ManageFare from "./pages/ManageFare"
 import ManageRoutes from "./pages/ManageRoutes";
 import Login from "./pages/Login";
@@ -29,7 +29,7 @@ import MidpointForm from "./pages/Forms/MidpointForm";
 
 import CustomerView from "./pages/Views/CustomerView";
 import DriverView from "./pages/Views/DriverView";
-import RouteView from "./pages/Views/RouteView";
+import RouteView from "./pages/Views/RouteView.jsx";
 import BookingView from "./pages/Views/BookingView";
 import BusLocationView from "./pages/Views/BusLocationView";
 
@@ -151,4 +151,4 @@ const App = () => {
   }
 };
 
-export default App;
+export default hot(App);

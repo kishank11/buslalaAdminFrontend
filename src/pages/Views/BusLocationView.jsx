@@ -11,7 +11,7 @@ const BusLocationView = () => {
   const [bus, setBus] = useState();
   const [loading, setLoading] = useState(true);
 
-  const GOOGLE_MAPS_APIKEY = "AIzaSyADsP1zSHCrMeyM2spsz4uwRj0PVnQlNx0";
+  const GOOGLE_MAPS_APIKEY = "AIzaSyB8rEE5-xgSHo4hMcO5FZIs1AoP9nguFrY";
 
   useEffect(async () => {
     await axios
