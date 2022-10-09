@@ -22,12 +22,9 @@ const BusDetails = () => {
   const [filtered, setFiltered] = useState([]);
   useEffect(() => {
     axios
-      .get(
-        "https://sea-turtle-app-5sz9y.ondigitalocean.app/api/admin/busDetails",
-        {
-          headers: { Authorization: getToken() },
-        }
-      )
+      .get("https://coral-app-5v83l.ondigitalocean.app/api/admin/busDetails", {
+        headers: { Authorization: getToken() },
+      })
       .then((response) => {
         // console.log(response.data.data);
         setBusDetailsData(response.data.data);
@@ -43,7 +40,7 @@ const BusDetails = () => {
     setLoading(true);
     await axios
       .delete(
-        `https://sea-turtle-app-5sz9y.ondigitalocean.app/api/admin/deleteABus/${id}`,
+        `https://coral-app-5v83l.ondigitalocean.app/api/admin/deleteABus/${id}`,
         {
           headers: { Authorization: getToken() },
         }

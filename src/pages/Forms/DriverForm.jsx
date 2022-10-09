@@ -68,7 +68,7 @@ const CustomerForm = () => {
     console.log(data);
     await axios
       .post(
-        "https://sea-turtle-app-5sz9y.ondigitalocean.app/api/admin/adddriver",
+        "https://coral-app-5v83l.ondigitalocean.app/api/admin/adddriver",
         {
           name: driverName,
           email: driverEmail,
@@ -97,7 +97,7 @@ const CustomerForm = () => {
   useEffect(async () => {
     await axios
       .get(
-        `https://sea-turtle-app-5sz9y.ondigitalocean.app/api/admin/getonedriver/${id}`,
+        `https://coral-app-5v83l.ondigitalocean.app/api/admin/getonedriver/${id}`,
         {
           headers: { Authorization: getToken() },
         }
@@ -116,12 +116,9 @@ const CustomerForm = () => {
       });
 
     await axios
-      .get(
-        `https://sea-turtle-app-5sz9y.ondigitalocean.app/api/admin/busDetails`,
-        {
-          headers: { Authorization: getToken() },
-        }
-      )
+      .get(`https://coral-app-5v83l.ondigitalocean.app/api/admin/busDetails`, {
+        headers: { Authorization: getToken() },
+      })
       .then((res) => {
         console.log(res.data.data);
         setAllBuses(res.data.data);
@@ -135,7 +132,7 @@ const CustomerForm = () => {
     e.preventDefault();
     await axios
       .patch(
-        `https://sea-turtle-app-5sz9y.ondigitalocean.app/api/admin/updatealldriver/${id}`,
+        `https://coral-app-5v83l.ondigitalocean.app/api/admin/updatealldriver/${id}`,
         {
           name: driverName,
           email: driverEmail,

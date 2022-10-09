@@ -45,7 +45,7 @@ const SubAdminForm = () => {
     e.preventDefault();
     await axios
       .post(
-        "https://sea-turtle-app-5sz9y.ondigitalocean.app/api/admin/createadmin",
+        "https://coral-app-5v83l.ondigitalocean.app/api/admin/createadmin",
         {
           name: adminName,
           email: adminEmail,

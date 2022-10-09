@@ -14,7 +14,7 @@ const BookingView = () => {
   useEffect(async () => {
     await axios
       .get(
-        `https://sea-turtle-app-5sz9y.ondigitalocean.app/api/admin/onebookingDetail/${id}`,
+        `https://coral-app-5v83l.ondigitalocean.app/api/admin/onebookingDetail/${id}`,
         {
           headers: { Authorization: getToken() },
         }

@@ -16,7 +16,7 @@ const BusLocationView = () => {
   useEffect(async () => {
     await axios
       .get(
-        `https://sea-turtle-app-5sz9y.ondigitalocean.app/api/admin/onebusDetail/${id}`,
+        `https://coral-app-5v83l.ondigitalocean.app/api/admin/onebusDetail/${id}`,
         {
           headers: { Authorization: getToken() },
         }

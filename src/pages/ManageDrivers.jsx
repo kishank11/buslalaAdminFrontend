@@ -26,7 +26,7 @@ const ManageDrivers = () => {
   useEffect(() => {
     axios
       .get(
-        "https://sea-turtle-app-5sz9y.ondigitalocean.app/api/admin/getalldriver",
+        "https://coral-app-5v83l.ondigitalocean.app/api/admin/getalldriver",
         {
           headers: { Authorization: getToken() },
         }
@@ -58,7 +58,7 @@ const ManageDrivers = () => {
     console.log(id);
     await axios
       .delete(
-        `https://sea-turtle-app-5sz9y.ondigitalocean.app/api/admin/updatealldriver/${id}`,
+        `https://coral-app-5v83l.ondigitalocean.app/api/admin/updatealldriver/${id}`,
         {
           headers: { Authorization: getToken() },
         }

@@ -87,7 +87,7 @@ const BusDetailsForm = () => {
     console.log(data);
     await axios
       .post(
-        "https://sea-turtle-app-5sz9y.ondigitalocean.app/api/admin/uploadBusDetails",
+        "https://coral-app-5v83l.ondigitalocean.app/api/admin/uploadBusDetails",
         data,
         {
           headers: { Authorization: getToken() },
@@ -110,7 +110,7 @@ const BusDetailsForm = () => {
     if (id) {
       await axios
         .get(
-          `https://sea-turtle-app-5sz9y.ondigitalocean.app/api/admin/onebusDetail/${id}`,
+          `https://coral-app-5v83l.ondigitalocean.app/api/admin/onebusDetail/${id}`,
           {
             headers: { Authorization: getToken() },
           }
@@ -141,7 +141,7 @@ const BusDetailsForm = () => {
     // console.log(sourceName);
     await axios
       .put(
-        `https://sea-turtle-app-5sz9y.ondigitalocean.app/api/admin/${id}/updateBusDetails`,
+        `https://coral-app-5v83l.ondigitalocean.app/api/admin/${id}/updateBusDetails`,
         {
           total_seater: seaterSeats,
           total_sleeper: sleeperSeats,

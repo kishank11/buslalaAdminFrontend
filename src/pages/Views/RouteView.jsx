@@ -28,7 +28,7 @@ const DriverView = () => {
     setIsSending(true);
     await axios
       .get(
-        `https://sea-turtle-app-5sz9y.ondigitalocean.app/api/admin/onetrip/${id}`,
+        `https://coral-app-5v83l.ondigitalocean.app/api/admin/onetrip/${id}`,
         {
           headers: { Authorization: getToken() },
         }
@@ -66,10 +66,9 @@ const DriverView = () => {
       console.log(item);
       await axios
         .patch(
-          `https://sea-turtle-app-5sz9y.ondigitalocean.app/api/admin/bookBus/${id}`,
+          `https://coral-app-5v83l.ondigitalocean.app/api/admin/bookBus/${id}`,
           {
             seat_number1: item.number,
-            
           },
           {
             headers: { Authorization: getToken() },
@@ -87,10 +86,9 @@ const DriverView = () => {
       console.log(item);
       setIsSending(true);
 
-      
       await axios
         .patch(
-          `https://sea-turtle-app-5sz9y.ondigitalocean.app/api/admin/unBookBus/${id}`,
+          `https://coral-app-5v83l.ondigitalocean.app/api/admin/unBookBus/${id}`,
           {
             seat_number1: item.number,
           },

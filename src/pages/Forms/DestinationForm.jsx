@@ -17,7 +17,7 @@ const DestinationForm = () => {
     e.preventDefault();
     await axios
       .post(
-        "https://sea-turtle-app-5sz9y.ondigitalocean.app/api/admin/destination",
+        "https://coral-app-5v83l.ondigitalocean.app/api/admin/destination",
         {
           name: destinationName,
           drop_of_time: arrivalTime,
@@ -42,7 +42,7 @@ const DestinationForm = () => {
   useEffect(async () => {
     await axios
       .get(
-        `https://sea-turtle-app-5sz9y.ondigitalocean.app/api/admin/onedestination/${id}`,
+        `https://coral-app-5v83l.ondigitalocean.app/api/admin/onedestination/${id}`,
         {
           headers: { Authorization: getToken() },
         }
@@ -62,7 +62,7 @@ const DestinationForm = () => {
     // console.log(sourceName);
     await axios
       .patch(
-        `https://sea-turtle-app-5sz9y.ondigitalocean.app/api/admin/${id}/editDest`,
+        `https://coral-app-5v83l.ondigitalocean.app/api/admin/${id}/editDest`,
         {
           name: destinationName,
           drop_of_time: arrivalTime,

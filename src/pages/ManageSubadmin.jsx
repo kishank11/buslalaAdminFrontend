@@ -24,7 +24,7 @@ const ManageSubadmin = () => {
   useEffect(() => {
     axios
       .get(
-        "https://sea-turtle-app-5sz9y.ondigitalocean.app/api/admin/alladminlist",
+        "https://coral-app-5v83l.ondigitalocean.app/api/admin/alladminlist",
         {
           headers: { Authorization: getToken() },
         }
@@ -43,7 +43,7 @@ const ManageSubadmin = () => {
     console.log(id);
     await axios
       .delete(
-        `https://sea-turtle-app-5sz9y.ondigitalocean.app/api/admin/deleteadmin/${id}`,
+        `https://coral-app-5v83l.ondigitalocean.app/api/admin/deleteadmin/${id}`,
         {
           headers: { Authorization: getToken() },
         }
@@ -69,7 +69,7 @@ const ManageSubadmin = () => {
     console.log(status);
     await axios
       .patch(
-        `https://sea-turtle-app-5sz9y.ondigitalocean.app/api/admin/statusadmin/${id}`,
+        `https://coral-app-5v83l.ondigitalocean.app/api/admin/statusadmin/${id}`,
         {
           status: status,
         },

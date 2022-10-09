@@ -21,12 +21,9 @@ const ManageMidpoint = () => {
 
   useEffect(() => {
     axios
-      .get(
-        "https://sea-turtle-app-5sz9y.ondigitalocean.app/api/admin/midpoint",
-        {
-          headers: { Authorization: getToken() },
-        }
-      )
+      .get("https://coral-app-5v83l.ondigitalocean.app/api/admin/midpoint", {
+        headers: { Authorization: getToken() },
+      })
       .then((response) => {
         setSourceData(response.data.data);
         setLoading(false);

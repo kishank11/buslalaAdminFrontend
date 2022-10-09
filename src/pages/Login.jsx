@@ -23,7 +23,7 @@ const Login = () => {
     e.preventDefault();
     await axios
       .post(
-        "https://sea-turtle-app-5sz9y.ondigitalocean.app/api/admin/login",
+        "https://coral-app-5v83l.ondigitalocean.app/api/admin/login",
         {
           email: email,
           password: password,

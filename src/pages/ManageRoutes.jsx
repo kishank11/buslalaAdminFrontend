@@ -27,12 +27,9 @@ const ManageRoutes = () => {
 
   useEffect(() => {
     axios
-      .get(
-        "https://sea-turtle-app-5sz9y.ondigitalocean.app/api/admin/alltrip",
-        {
-          headers: { Authorization: getToken() },
-        }
-      )
+      .get("https://coral-app-5v83l.ondigitalocean.app/api/admin/alltrip", {
+        headers: { Authorization: getToken() },
+      })
       .then((response) => {
         console.log(response?.data?.data);
         setAllRoutesData(response?.data?.data);

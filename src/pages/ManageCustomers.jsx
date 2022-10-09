@@ -25,7 +25,7 @@ const ManageCustomers = () => {
   useEffect(() => {
     axios
       .get(
-        "https://sea-turtle-app-5sz9y.ondigitalocean.app/api/admin/getallcustomer",
+        "https://coral-app-5v83l.ondigitalocean.app/api/admin/getallcustomer",
         {
           headers: { Authorization: getToken() },
         }

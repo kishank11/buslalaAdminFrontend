@@ -26,7 +26,7 @@ const BookingDetails = () => {
   useEffect(() => {
     axios
       .get(
-        "https://sea-turtle-app-5sz9y.ondigitalocean.app/api/admin/bookingDetails",
+        "https://coral-app-5v83l.ondigitalocean.app/api/admin/bookingDetails",
         {
           headers: { Authorization: getToken() },
         }
@@ -59,7 +59,7 @@ const BookingDetails = () => {
     // console.log(sourceName);
     await axios
       .put(
-        `https://sea-turtle-app-5sz9y.ondigitalocean.app/api/admin/${id}/updateBookingDetails`,
+        `https://coral-app-5v83l.ondigitalocean.app/api/admin/${id}/updateBookingDetails`,
         {
           status: "cancelled",
         },

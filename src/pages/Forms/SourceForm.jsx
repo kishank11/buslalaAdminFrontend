@@ -17,7 +17,7 @@ const SourceForm = () => {
     e.preventDefault();
     await axios
       .post(
-        "https://sea-turtle-app-5sz9y.ondigitalocean.app/api/admin/source",
+        "https://coral-app-5v83l.ondigitalocean.app/api/admin/source",
         {
           name: sourceName,
           pick_up_time: departureTime,
@@ -39,7 +39,7 @@ const SourceForm = () => {
   useEffect(async () => {
     await axios
       .get(
-        `https://sea-turtle-app-5sz9y.ondigitalocean.app/api/admin/onesource/${id}`,
+        `https://coral-app-5v83l.ondigitalocean.app/api/admin/onesource/${id}`,
         {
           headers: { Authorization: getToken() },
         }
@@ -59,7 +59,7 @@ const SourceForm = () => {
     // console.log(sourceName);
     await axios
       .put(
-        `https://sea-turtle-app-5sz9y.ondigitalocean.app/api/admin/${id}/editSource`,
+        `https://coral-app-5v83l.ondigitalocean.app/api/admin/${id}/editSource`,
         {
           name: sourceName,
           pick_up_time: departureTime,

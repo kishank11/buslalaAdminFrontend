@@ -13,7 +13,7 @@ const DriverView = () => {
   useEffect(async () => {
     await axios
       .get(
-        `https://sea-turtle-app-5sz9y.ondigitalocean.app/api/admin/getonedriver/${id}`,
+        `https://coral-app-5v83l.ondigitalocean.app/api/admin/getonedriver/${id}`,
         {
           headers: { Authorization: getToken() },
         }

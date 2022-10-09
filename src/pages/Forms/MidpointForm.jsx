@@ -17,7 +17,7 @@ const MidpointForm = () => {
     e.preventDefault();
     await axios
       .post(
-        "https://sea-turtle-app-5sz9y.ondigitalocean.app/api/admin/midpoint",
+        "https://coral-app-5v83l.ondigitalocean.app/api/admin/midpoint",
         {
           name: sourceName,
           pick_up_time: departureTime,
@@ -41,7 +41,7 @@ const MidpointForm = () => {
   useEffect(async () => {
     await axios
       .get(
-        `https://sea-turtle-app-5sz9y.ondigitalocean.app/api/admin/onemidpoint/${id}`,
+        `https://coral-app-5v83l.ondigitalocean.app/api/admin/onemidpoint/${id}`,
         {
           headers: {
             Authorization: getToken(),
@@ -63,7 +63,7 @@ const MidpointForm = () => {
     // console.log(sourceName);
     await axios
       .put(
-        `https://sea-turtle-app-5sz9y.ondigitalocean.app/api/admin/${id}/editMid`,
+        `https://coral-app-5v83l.ondigitalocean.app/api/admin/${id}/editMid`,
         {
           name: sourceName,
           pick_up_time: departureTime,

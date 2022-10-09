@@ -38,7 +38,7 @@ const AllRoutesForms = () => {
 
   useEffect(() => {
     axios
-      .get("https://sea-turtle-app-5sz9y.ondigitalocean.app/api/admin/source", {
+      .get("https://coral-app-5v83l.ondigitalocean.app/api/admin/source", {
         headers: { Authorization: getToken() },
       })
       .then((response) => {
@@ -50,12 +50,9 @@ const AllRoutesForms = () => {
       });
 
     axios
-      .get(
-        "https://sea-turtle-app-5sz9y.ondigitalocean.app/api/admin/destination",
-        {
-          headers: { Authorization: getToken() },
-        }
-      )
+      .get("https://coral-app-5v83l.ondigitalocean.app/api/admin/destination", {
+        headers: { Authorization: getToken() },
+      })
       .then((response) => {
         // console.log(response.data.data);
         setDestinations(response.data.data);
@@ -65,12 +62,9 @@ const AllRoutesForms = () => {
       });
 
     axios
-      .get(
-        "https://sea-turtle-app-5sz9y.ondigitalocean.app/api/admin/busDetails",
-        {
-          headers: { Authorization: getToken() },
-        }
-      )
+      .get("https://coral-app-5v83l.ondigitalocean.app/api/admin/busDetails", {
+        headers: { Authorization: getToken() },
+      })
       .then((response) => {
         // console.log(response.data.data);
         setBusID(response.data.data);
@@ -82,8 +76,7 @@ const AllRoutesForms = () => {
     if (id) {
       axios
         .get(
-          "https://sea-turtle-app-5sz9y.ondigitalocean.app/api/admin/onetrip/" +
-            id,
+          "https://coral-app-5v83l.ondigitalocean.app/api/admin/onetrip/" + id,
           {
             headers: { Authorization: getToken() },
           }
@@ -139,7 +132,7 @@ const AllRoutesForms = () => {
     e.preventDefault();
     await axios
       .post(
-        "https://sea-turtle-app-5sz9y.ondigitalocean.app/api/admin/trip",
+        "https://coral-app-5v83l.ondigitalocean.app/api/admin/trip",
         {
           source: selectedSource,
           destination: selectedDestination,
@@ -175,8 +168,7 @@ const AllRoutesForms = () => {
     e.preventDefault();
     await axios
       .patch(
-        "https://sea-turtle-app-5sz9y.ondigitalocean.app/api/admin/editTrip/" +
-          id,
+        "https://coral-app-5v83l.ondigitalocean.app/api/admin/editTrip/" + id,
         {
           source: selectedSource,
           destination: selectedDestination,
